@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+
+
+/* Hide horizontal scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  height: 0px;
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

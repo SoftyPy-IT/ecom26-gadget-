@@ -1,0 +1,24 @@
+/* Remove any existing navbar.css and use this instead */
+.submenu {
+    display: none;
+}
+
+.group:hover .submenu {
+    display: block;
+}
+
+/* Mobile styles */
+@media (max-width: 1024px) {
+    .submenu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        display: none;
+        background-color: #f5f5f5;
+        margin-left: 20px;
+    }
+    
+    .group:hover .submenu {
+        display: none;
+    }
+}
