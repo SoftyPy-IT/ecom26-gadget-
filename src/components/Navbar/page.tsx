@@ -20,6 +20,7 @@ import {
   MenuIcon,
   PhoneCall,
   ChevronDown,
+  ShieldCheck,
 } from "lucide-react";
 import Container from "../shared/Container";
 import CartDrawer from "../Cart/CartDrawer";
@@ -42,6 +43,22 @@ const IconGradient = () => (
   </svg>
 );
 
+const BrandItem = ({ logo, name }: { logo: string; name: string }) => (
+  <Link
+    href={`/brand/${name.toLowerCase()}`}
+    className="flex flex-col items-center gap-2 group/brand"
+  >
+    <div className="h-12 flex items-center justify-center grayscale group-hover/brand:grayscale-0 transition-all">
+      {/* Replace with actual <img> tags for logos */}
+      <span className="font-black text-zinc-800 text-lg tracking-tighter">
+        {logo}
+      </span>
+    </div>
+    <span className="text-[11px] font-bold text-zinc-400 group-hover/brand:text-black transition-colors">
+      {name}
+    </span>
+  </Link>
+);
 const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -183,7 +200,7 @@ const Navbar = () => {
                 onClick={() => setIsCartOpen(true)}
                 className="flex items-center gap-2 lg:border lg:border-gray-700 text-white px-2 lg:px-4 py-2 rounded-md text-xs uppercase hover:bg-gray-800 transition-all"
               >
-                <ShoppingCart size={24} className="lg:w-[14px] lg:h-[14px]" /> 
+                <ShoppingCart size={24} className="lg:w-[14px] lg:h-[14px]" />
                 <span className="hidden lg:inline">Cart</span>
               </button>
 
@@ -224,9 +241,53 @@ const Navbar = () => {
         <Container>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="border-r border-gray-100 p-4 mr-2">
+              <div className="group relative border-r border-gray-100 p-4 mr-2">
                 <div className="w-8 h-8 flex flex-col justify-center gap-1.5 cursor-pointer hover:opacity-70 border border-[#e2c7a8] p-1 rounded">
-                  <MenuIcon />
+                  <MenuIcon size={20} />
+                </div>
+
+                {/* THE MEGA MENU PANEL */}
+                <div className="absolute top-full left-0 w-[800px] bg-white shadow-2xl border border-zinc-100 flex opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100] rounded-b-xl overflow-hidden">
+                  {/* LEFT SIDEBAR: Categories */}
+                  <div className="w-1/3 bg-zinc-50/50 border-r border-zinc-100 py-4">
+                    {categories.map((cat) => (
+                      <div
+                        key={cat.name}
+                        className="px-6 py-3 flex justify-between items-center cursor-pointer hover:bg-white hover:text-[#c5a47e] font-bold text-sm text-zinc-700 transition-colors group/item"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="opacity-70">{cat.icon}</span>
+                          {cat.name}
+                        </div>
+                        <ChevronDown
+                          size={14}
+                          className="-rotate-90 opacity-40 group-hover/item:opacity-100"
+                        />
+                      </div>
+                    ))}
+                    {/* Additional Side Menu Items from Image */}
+                    <div className="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-white hover:text-[#c5a47e] font-bold text-sm text-zinc-700">
+                      <FileText size={18} className="opacity-70" /> Phone Cases
+                    </div>
+                    <div className="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-white hover:text-[#c5a47e] font-bold text-sm text-zinc-700">
+                      <ShieldCheck size={18} className="opacity-70" /> Screen
+                      Protectors
+                    </div>
+                  </div>
+
+                  {/* RIGHT CONTENT: Brand Grid */}
+                  <div className="w-2/3 p-8 grid grid-cols-3 gap-8 items-center justify-items-center bg-white">
+                    {/* These would ideally be mapped based on the hovered category */}
+                    <BrandItem logo="APPLE" name="Apple" />
+                    <BrandItem logo="SAMSUNG" name="Samsung" />
+                    <BrandItem logo="MOTOROLA" name="Motorola" />
+                    <BrandItem logo="GARMIN" name="Garmin" />
+                    <BrandItem logo="GOOGLE" name="Google" />
+                    <BrandItem logo="HONOR" name="Honor" />
+                    <BrandItem logo="HUAWEI" name="Huawei" />
+                    <BrandItem logo="ONEPLUS" name="OnePlus" />
+                    <BrandItem logo="OPPO" name="Oppo" />
+                  </div>
                 </div>
               </div>
 
@@ -280,20 +341,31 @@ const Navbar = () => {
         <div className="lg:hidden fixed inset-0 bg-white z-[9999] overflow-y-auto animate-in slide-in-from-right duration-300">
           <div className="p-6">
             <div className="flex justify-between items-center mb-8 border-b pb-4">
-              <span className="font-black text-xl tracking-tighter text-[#111416]">GADGET™</span>
-              <button onClick={() => setIsClick(false)} className="p-2 hover:bg-zinc-100 rounded-full">
+              <span className="font-black text-xl tracking-tighter text-[#111416]">
+                GADGET™
+              </span>
+              <button
+                onClick={() => setIsClick(false)}
+                className="p-2 hover:bg-zinc-100 rounded-full"
+              >
                 <X size={28} />
               </button>
             </div>
 
             <Accordion type="single" collapsible className="w-full">
               {categories.map((cat) => (
-                <AccordionItem key={cat.name} value={cat.name} className="border-b-zinc-100">
+                <AccordionItem
+                  key={cat.name}
+                  value={cat.name}
+                  className="border-b-zinc-100"
+                >
                   {cat.brands ? (
                     <>
                       <AccordionTrigger className="hover:no-underline py-4">
                         <div className="flex items-center gap-4 text-sm font-black uppercase tracking-tight text-zinc-800">
-                          <span className="p-2 bg-zinc-50 rounded-lg">{cat.icon}</span>
+                          <span className="p-2 bg-zinc-50 rounded-lg">
+                            {cat.icon}
+                          </span>
                           {cat.name}
                         </div>
                       </AccordionTrigger>
@@ -314,8 +386,14 @@ const Navbar = () => {
                     </>
                   ) : (
                     <div className="py-4">
-                      <Link href={cat.href} onClick={() => setIsClick(false)} className="flex items-center gap-4 text-sm font-black uppercase text-zinc-800">
-                        <span className="p-2 bg-zinc-50 rounded-lg">{cat.icon}</span>
+                      <Link
+                        href={cat.href}
+                        onClick={() => setIsClick(false)}
+                        className="flex items-center gap-4 text-sm font-black uppercase text-zinc-800"
+                      >
+                        <span className="p-2 bg-zinc-50 rounded-lg">
+                          {cat.icon}
+                        </span>
                         {cat.name}
                       </Link>
                     </div>
