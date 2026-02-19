@@ -24,6 +24,12 @@ import {
 import Container from "../shared/Container";
 import CartDrawer from "../Cart/CartDrawer";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const IconGradient = () => (
   <svg width="0" height="0" className="absolute">
@@ -39,10 +45,7 @@ const IconGradient = () => (
 const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-
-  useEffect(() => {
-    console.log("isCartOpen:", isCartOpen);
-  }, [isCartOpen]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const utilityItems = [
     { name: "Order Tracking", href: "/track" },
@@ -56,7 +59,6 @@ const Navbar = () => {
     { name: "Store Location", href: "/location" },
   ];
 
-  // UPDATED: Categories now have sub-brands
   const categories = [
     {
       name: "Phones",
@@ -130,16 +132,17 @@ const Navbar = () => {
         </Container>
       </div>
 
-      {/* 2. MAIN SEARCH BAR */}
+      {/* 2. MAIN SEARCH BAR SECTION */}
       <div className="bg-[#111416] py-4">
         <Container>
-          <div className="flex justify-between gap-6">
+          <div className="flex justify-between items-center gap-6">
             <Link href="/" className="shrink-0">
               <span className="text-white text-2xl font-black tracking-tighter">
                 GADGET™
               </span>
             </Link>
 
+            {/* Desktop Search */}
             <div className="grow hidden lg:flex items-center relative">
               <input
                 type="text"
@@ -151,46 +154,42 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Desktop Actions */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Link href="/offer">
-                <Button className="flex items-center gap-2 bg-[#1c1f22] border border-gray-700 text-white px-4 py-2 rounded-full text-xs uppercase hover:bg-gray-800 transition-all">
-                  Offer <Gift size={14} className="text-[#e2c7a8]" />
-                </Button>
-              </Link>
-
-              {/* FIX: Cart Drawer Trigger */}
+            {/* Actions */}
+            <div className="flex items-center gap-2">
+              {/* Mobile Search Toggle */}
               <button
-                onClick={() => {
-                  setIsCartOpen(true);
-                  console.log("Cart button clicked!");
-                }}
-                className="flex items-center gap-2 border border-gray-700 text-white px-4 py-2 rounded-md text-xs cursor-pointer uppercase hover:bg-gray-800 transition-all"
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="lg:hidden text-white p-2 hover:bg-white/10 rounded-full transition-colors"
               >
-                <ShoppingCart size={14} /> Cart
+                {isSearchOpen ? <X size={24} /> : <Search size={24} />}
               </button>
 
-              {/* <div className="fixed top-0 left-0 bg-black text-white p-2 z-50">
-                Cart Open: {isCartOpen ? "Yes" : "No"}
-              </div> */}
+              {/* Desktop Only Buttons */}
+              <div className="hidden lg:flex items-center gap-2">
+                <Link href="/offer">
+                  <Button className="flex items-center gap-2 bg-[#1c1f22] border border-gray-700 text-white px-4 py-2 rounded-full text-xs uppercase hover:bg-gray-800 transition-all">
+                    Offer <Gift size={14} className="text-[#e2c7a8]" />
+                  </Button>
+                </Link>
+                <Link href="/login">
+                  <Button className="flex items-center gap-2 border border-gray-700 text-white px-4 py-2 rounded-md text-xs uppercase hover:bg-gray-800 transition-all">
+                    <User size={14} /> Login
+                  </Button>
+                </Link>
+              </div>
 
-              <Link href="/login">
-                <Button className="flex items-center gap-2 border border-gray-700 text-white px-4 py-2 rounded-md text-xs uppercase hover:bg-gray-800 transition-all">
-                  <User size={14} /> Login
-                </Button>
-              </Link>
-            </div>
-            {/* Mobile Actions */}
-            <div className="lg:hidden flex items-center gap-4">
+              {/* Cart & Menu (Visible on Mobile) */}
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="text-white cursor-pointer"
+                className="flex items-center gap-2 lg:border lg:border-gray-700 text-white px-2 lg:px-4 py-2 rounded-md text-xs uppercase hover:bg-gray-800 transition-all"
               >
-                <ShoppingCart size={24} />
+                <ShoppingCart size={24} className="lg:w-[14px] lg:h-[14px]" /> 
+                <span className="hidden lg:inline">Cart</span>
               </button>
+
               <button
                 onClick={() => setIsClick(!isClick)}
-                className="text-white cursor-pointer"
+                className="lg:hidden text-white p-1"
               >
                 {isClick ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -199,7 +198,28 @@ const Navbar = () => {
         </Container>
       </div>
 
-      {/* 3. CATEGORY BAR WITH HOVER DROPDOWN */}
+      {/* 3. MOBILE SEARCH BAR (Slide Down) */}
+      <div
+        className={`lg:hidden bg-[#1c1f22] overflow-hidden transition-all duration-300 ease-in-out ${
+          isSearchOpen ? "max-h-20 border-b border-gray-800" : "max-h-0"
+        }`}
+      >
+        <Container>
+          <div className="py-3 flex items-center relative">
+            <input
+              type="text"
+              autoFocus={isSearchOpen}
+              placeholder="Search for gadgets..."
+              className="w-full bg-white rounded-md px-4 py-3 outline-none text-sm pr-12"
+            />
+            <button className="absolute right-2 p-2 bg-[#e2c7a8] rounded-md">
+              <Search size={18} className="text-gray-800" />
+            </button>
+          </div>
+        </Container>
+      </div>
+
+      {/* 4. DESKTOP CATEGORY BAR */}
       <div className="bg-white border-b border-gray-200 hidden lg:block shadow-sm">
         <Container>
           <div className="flex items-center justify-between">
@@ -227,7 +247,6 @@ const Navbar = () => {
                       )}
                     </Link>
 
-                    {/* DROPDOWN MENU */}
                     {cat.brands && (
                       <div className="absolute top-full left-0 w-48 bg-white shadow-xl border border-zinc-100 py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 rounded-b-xl">
                         {cat.brands.map((brand) => (
@@ -256,41 +275,60 @@ const Navbar = () => {
         </Container>
       </div>
 
-      {/* MOBILE MENU DRAWER */}
+      {/* 5. MOBILE MENU DRAWER */}
       {isClick && (
-        <div className="lg:hidden fixed inset-0 bg-white z-[9999] p-6 animate-in slide-in-from-right duration-300">
-          <div className="flex justify-between items-center mb-8">
-            <span className="font-black text-xl">GADGET™</span>
-            <X size={28} onClick={() => setIsClick(false)} />
-          </div>
-          <div className="flex flex-col gap-6">
-            {categories.map((cat) => (
-              <Link
-                key={cat.name}
-                href={cat.href}
-                onClick={() => setIsClick(false)}
-                className="flex items-center gap-4 text-lg font-bold border-b border-zinc-50 pb-3"
-              >
-                {cat.icon} {cat.name}
-              </Link>
-            ))}
+        <div className="lg:hidden fixed inset-0 bg-white z-[9999] overflow-y-auto animate-in slide-in-from-right duration-300">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-8 border-b pb-4">
+              <span className="font-black text-xl tracking-tighter text-[#111416]">GADGET™</span>
+              <button onClick={() => setIsClick(false)} className="p-2 hover:bg-zinc-100 rounded-full">
+                <X size={28} />
+              </button>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full">
+              {categories.map((cat) => (
+                <AccordionItem key={cat.name} value={cat.name} className="border-b-zinc-100">
+                  {cat.brands ? (
+                    <>
+                      <AccordionTrigger className="hover:no-underline py-4">
+                        <div className="flex items-center gap-4 text-sm font-black uppercase tracking-tight text-zinc-800">
+                          <span className="p-2 bg-zinc-50 rounded-lg">{cat.icon}</span>
+                          {cat.name}
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="flex flex-col gap-1 pl-14">
+                          {cat.brands.map((brand) => (
+                            <Link
+                              key={brand}
+                              href={`${cat.href}/${brand.toLowerCase()}`}
+                              onClick={() => setIsClick(false)}
+                              className="py-3 text-[13px] font-bold text-zinc-500 border-b border-zinc-50 last:border-0"
+                            >
+                              {brand}
+                            </Link>
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </>
+                  ) : (
+                    <div className="py-4">
+                      <Link href={cat.href} onClick={() => setIsClick(false)} className="flex items-center gap-4 text-sm font-black uppercase text-zinc-800">
+                        <span className="p-2 bg-zinc-50 rounded-lg">{cat.icon}</span>
+                        {cat.name}
+                      </Link>
+                    </div>
+                  )}
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       )}
 
-      {/* {isCartOpen && (
-  <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-    <div className="bg-white p-8 rounded-xl">
-      <p>Drawer works!</p>
-      <button onClick={() => setIsCartOpen(false)}>Close</button>
-    </div>
-  </div>
-)} */}
-
       {/* CART DRAWER */}
       <CartDrawer isOpen={isCartOpen} setIsOpen={setIsCartOpen} />
-
-      {/* <CartDrawer  /> */}
     </header>
   );
 };

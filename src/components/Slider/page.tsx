@@ -14,10 +14,6 @@ import img3 from "../../../public/img/hero/s25-series-.webp";
 import img4 from "../../../public/img/hero/turbo-4-pro-v2.webp";
 import img5 from "../../../public/img/hero/ipad-air-m3.webp";
 
-// Side Banner Images (Replace with your actual paths)
-// import sideImg1 from "../../../public/img/side-01.jpg";
-// import sideImg2 from "../../../public/img/side-02.jpg";
-
 import "./slider.css";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -38,10 +34,10 @@ const Slider = () => {
     <div className="py-6 bg-white">
       <Container>
         {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[300px] md:h-[450px] lg:h-[650px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 ">
           
           {/* LEFT SECTION: MAIN SLIDER (Occupies 8/12 columns) */}
-          <div className="lg:col-span-8 rounded-lg overflow-hidden relative shadow-xl">
+          <div className="lg:col-span-8 rounded-lg overflow-hidden relative shadow-xl h-[250px] md:h-[450px] lg:h-[650px]">
             <Swiper
               effect="fade"
               speed={1000}
@@ -76,7 +72,7 @@ const Slider = () => {
           </div>
 
           {/* RIGHT SECTION: TWO STACKED BANNERS (Occupies 4/12 columns) */}
-          <div className="lg:col-span-4 flex flex-col gap-4 h-full">
+          <div className="lg:col-span-4 flex lg:flex-col gap-2 md:gap-4 h-[150px] md:h-[450px] lg:h-[650px]">
             
             {/* Top Banner */}
             <Link 

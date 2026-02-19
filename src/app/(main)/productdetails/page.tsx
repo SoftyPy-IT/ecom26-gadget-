@@ -17,6 +17,7 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Container from "@/src/components/shared/Container";
 
 const IPhone17ProMaxDetails = () => {
   const [selectedColor, setSelectedColor] = useState("Cosmic Orange");
@@ -48,14 +49,14 @@ const IPhone17ProMaxDetails = () => {
 
   return (
     <div className="bg-white min-h-screen text-[#1d1d1f] font-sans antialiased">
-      <div className="max-w-[1300px] mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
+      <Container>
+        <div className="flex flex-col lg:flex-row gap-12 items-start pt-5">
           {/* LEFT SIDE */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-8 flex gap-4">
             {/* Thumbnails */}
             <div className="hidden md:flex flex-col gap-3">
               {colorOptions.map((color, idx) => (
-                <Button
+                <button
                   key={idx}
                   onClick={() => setSelectedColor(color.name)}
                   className={`w-16 h-16 rounded-lg border p-1 overflow-hidden transition-all ${
@@ -67,11 +68,11 @@ const IPhone17ProMaxDetails = () => {
                   <Image
                     src={color.img}
                     alt="thumb"
-                    height={100}
-                    width={100}
+                    height={200}
+                    width={200}
                     className="w-full h-full object-contain"
                   />
-                </Button>
+                </button>
               ))}
             </div>
 
@@ -105,7 +106,7 @@ const IPhone17ProMaxDetails = () => {
 
           {/* --- RIGHT SIDE: SCROLLABLE CONTENT --- */}
           <div className="w-full lg:w-1/2 space-y-6">
-            <div className="bg-[#f5f5f7] p-6 rounded-2xl border border-zinc-100">
+            <div className="bg-[#f5f5f7] p-3 md:p-6 rounded-2xl border border-zinc-100">
               <div className="flex justify-between items-start mb-4">
                 <span className="text-[10px] font-black uppercase text-zinc-400 bg-white px-3 py-1 rounded border border-zinc-200">
                   Brand: Apple
@@ -151,7 +152,7 @@ const IPhone17ProMaxDetails = () => {
 
               <div className="space-y-3 text-[11px] leading-relaxed text-zinc-600 pt-4 border-t border-zinc-200/60">
                 <p>
-                  <strong>Display:</strong> 6.9" LTPO Super Retina XDR OLED,
+                  <strong>Display:</strong> 6.9 LTPO Super Retina XDR OLED,
                   120Hz with 3000 nits peak
                 </p>
                 <p>
@@ -170,16 +171,16 @@ const IPhone17ProMaxDetails = () => {
             </div>
 
             {/* Selection Grid */}
-            <div className="bg-[#f5f5f7] p-6 rounded-2xl border border-zinc-100 space-y-6">
+            <div className="bg-[#f5f5f7] p-3 md:p-6 rounded-2xl border border-zinc-100 space-y-6">
               <div>
                 <Label text={`Color: ${selectedColor}`} />
                 <div className="flex gap-3">
                   {colorOptions.map((c) => (
-                    <Button
+                    <button
                       key={c.name}
-                      variant="outline"
+                      // variant="outline"
                       onClick={() => setSelectedColor(c.name)}
-                      className={`w-16 h-16 p-1 bg-white overflow-hidden transition-all ${selectedColor === c.name ? "border-orange-500 shadow-md ring-2 ring-orange-100" : "border-zinc-200"}`}
+                      className={`w-16 h-16 p-1 bg-white overflow-hidden transition-all rounded-lg ${selectedColor === c.name ? "border-orange-500 shadow-md ring-2 ring-orange-100" : "border-zinc-200"}`}
                     >
                       <Image
                         src={c.img}
@@ -188,7 +189,7 @@ const IPhone17ProMaxDetails = () => {
                         width={100}
                         className="w-full h-full object-contain"
                       />
-                    </Button>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -212,7 +213,7 @@ const IPhone17ProMaxDetails = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col lg:flex-row items-center gap-4">
                 <Label text="Storage:" className="mb-0 min-w-16" />
                 <div className="flex flex-1 gap-2">
                   {["256GB", "512GB", "1TB", "2TB"].map((s) => (
@@ -304,7 +305,7 @@ const IPhone17ProMaxDetails = () => {
                   className="w-4 h-4 accent-green-600 rounded"
                 />
                 <span className="text-[11px] text-zinc-500">
-                  I agree to Dazzle's{" "}
+                  I agree to Dazzles{" "}
                   <span className="text-blue-500 underline">
                     terms & conditions
                   </span>
@@ -344,7 +345,7 @@ const IPhone17ProMaxDetails = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

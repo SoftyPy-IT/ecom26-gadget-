@@ -28,17 +28,17 @@ export default function ProductCard({
   return (
      <motion.div
      whileHover={{ y: -10 }}
-     className="group relative bg-white rounded-xl transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-transparent hover:border-zinc-100"
+     className="group relative bg-white rounded-xl transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-zinc-100 hover:border-zinc-200"
    >
      {/* Badges */}
 
      <div className="flex justify-between items-start mb-1">
-       <div className="bg-gradient-to-r from-[#c5a47e] to-[#8a6d4d] text-white text-[10px] text-xs p-1.5 rounded-br-2xl rounded-tl-xl  uppercase">
+       <div className="bg-gradient-to-r from-[#c5a47e] to-[#8a6d4d] text-white text-[10px] md:text-[12px] text-xs p-1 md:p-1.5 rounded-br-2xl rounded-tl-xl  uppercase">
          {discount} OFF
        </div>
 
        {isHot && (
-         <div className="bg-[#111416] text-[#e2c7a8] p-1.5 rounded-bl-lg rounded-tr-lg text-xs flex gap-1">
+         <div className="bg-[#111416] text-[#e2c7a8] p-1 md:p-1.5 rounded-bl-lg rounded-tr-lg text-[10px] md:text-[12px] text-xs flex gap-1">
            <Flame size={14} className="fill-current" /> Hot Product
          </div>
        )}
@@ -96,12 +96,12 @@ export default function ProductCard({
       {/* 4. Action Buttons */}
       <div className="flex justify-center gap-2 mb-2">
         <Link href={"/productdetails"}>
-        <Button className=" bg-[#111416] text-white p-1 rounded-lg text-[9px] font-black uppercase tracking-[0.15em] hover:bg-black transition-all flex items-center justify-center gap-1.5">
+        <Button className=" bg-[#111416] text-white md:rounded-lg text-[9px] font-black uppercase tracking-[0.15em] hover:bg-black transition-all flex items-center justify-center gap-1.5">
           <Eye size={14} /> View
         </Button>
         </Link>
         {/* <Link> */}
-        <Button className=" bg-[#f3d4b1]/20 text-[#8b6d4d] border border-[#f3d4b1]/40 p-1 rounded-lg text-[9px] font-black uppercase tracking-[0.15em] hover:bg-[#f3d4b1]/40 transition-all flex items-center justify-center gap-1.5">
+        <Button className=" bg-[#f3d4b1]/20 text-[#8b6d4d] border border-[#f3d4b1]/40 rounded-lg text-[9px] font-black uppercase tracking-[0.15em] hover:bg-[#f3d4b1]/40 transition-all flex items-center justify-center gap-1.5">
           <ShoppingCart size={14} /> Add
         </Button>
         {/* </Link> */}

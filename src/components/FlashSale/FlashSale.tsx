@@ -1,11 +1,10 @@
 "use client";
 
-import {
-  Zap,
-  ArrowRight,
-} from "lucide-react";
+import { Zap, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import ProductCard from "../shared/ProductCard";
+import Slider from "../Slider/page";
+import { ReusableSlider } from "../shared/ReusableSlider";
 
 // 1. Updated JSON Data Array
 const FLASH_SALE_PRODUCTS = [
@@ -69,13 +68,23 @@ const FLASH_SALE_PRODUCTS = [
     img: "/img/Belkin-BoostCharge-Compact-USB-C-Wall-Charger-20W-price-in-Bangladesh.webp",
     img2: "",
   },
+   {
+    id: 7,
+    name: "Anker Zolo 20W PD",
+    price: 1250,
+    oldPrice: 1499,
+    discount: "16%",
+    isHot: true,
+    img: "/img/Anker-Zolo-20W-PD-30-3-Pin-UK-Fast-Charger-Price-in-bangladesh-1.webp",
+    img2: "/img/Anker-Zolo-Charger-20W-GaN-IQ-&-PD-price-in-bangladesh-(2).webp",
+  },
 ];
 
 const FlashSale = () => {
   return (
     <section className="py-16 bg-[#fafafa]">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Modern Header Container */}
+        {/* Modern Header (unchanged) */}
         <div className="bg-gradient-to-br from-[#111416] via-[#1c1f22] to-[#111416] rounded-[2.5rem] p-8 md:p-10 mb-10 relative overflow-hidden shadow-2xl">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#e2c7a8] opacity-10 blur-[100px]" />
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
@@ -132,25 +141,29 @@ const FlashSale = () => {
           </div>
         </div>
 
-        {/* Product Grid - Passing props correctly to our modern card */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
-         {FLASH_SALE_PRODUCTS.map((product) => (
-            <ProductCard
+        {/* Reusable Slider replaces the grid */}
+        <ReusableSlider gap={12}>
+          {FLASH_SALE_PRODUCTS.map((product) => (
+            <div
               key={product.id}
-              name={product.name}
-              price={product.price}
-              oldPrice={product.oldPrice}
-              discount={product.discount}
-              isHot={product.isHot}
-              image={product.img}
-              hoverImage={product.img2}
-            />
+              data-slider-card
+              className="min-w-[calc(50%-6px)] sm:min-w-[calc(50%-6px)] md:min-w-[calc(33.333%-8px)] lg:min-w-[calc(16.666%-10px)]"
+            >
+              <ProductCard
+                name={product.name}
+                price={product.price}
+                oldPrice={product.oldPrice}
+                discount={product.discount}
+                isHot={product.isHot}
+                image={product.img}
+                hoverImage={product.img2}
+              />
+            </div>
           ))}
-        </div>
+        </ReusableSlider>
       </div>
     </section>
   );
 };
-
 
 export default FlashSale;

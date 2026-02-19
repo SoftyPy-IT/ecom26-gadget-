@@ -36,14 +36,14 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#111416] text-white pt-20 pb-10 px-6 lg:px-20 rounded-t-[3rem] mt-20">
+    <footer className="bg-[#111416] text-white pt-10 md:pt-20 pb-10 px-6 lg:px-20 rounded-t-[30px] md:rounded-t-[3rem] mt-20">
       <div className="max-w-7xl mx-auto">
         <div className="grid gap-12 lg:grid-cols-12 mb-16">
           
           {/* Brand Section */}
           <div className="lg:col-span-5 space-y-8">
             <h2 className="text-4xl font-black uppercase italic tracking-tighter text-[#e2c7a8]">
-              DAZZLE
+              Gadget
             </h2>
             <p className="text-zinc-400 text-sm leading-relaxed max-w-sm">
               Your ultimate destination for premium gadgets and authentic tech accessories in Bangladesh. Experience the future today.
@@ -124,7 +124,7 @@ export default function Footer() {
             © 2026 Dazzle Gadget Store. All Rights Reserved.
           </p>
           <div className="flex gap-6">
-             <Image src="/img/payment-methods.png" alt="Payments" width={250} height={30} className="opacity-50 grayscale hover:grayscale-0 transition-all" />
+             <Image src="/img/payment.webp" alt="Payments" width={250} height={30} className="transition-all" />
           </div>
         </div>
       </div>

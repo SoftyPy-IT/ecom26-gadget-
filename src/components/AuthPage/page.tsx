@@ -13,7 +13,7 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center py-12 px-4">
-      <div className="max-w-[1100px] w-full grid lg:grid-cols-2 rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-zinc-100">
+      <div className="max-w-[1100px] w-full grid lg:grid-cols-2 rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-zinc-100">
         
         {/* LEFT SIDE: Visual/Branding */}
         <div className="hidden lg:flex bg-[#111416] p-12 flex-col justify-between relative overflow-hidden">
@@ -39,7 +39,7 @@ export default function AuthPage() {
         </div>
 
         {/* RIGHT SIDE: Form */}
-        <div className="bg-white p-8 md:p-16 flex flex-col justify-center">
+        <div className="bg-white p-4 md:p-16 flex flex-col justify-center">
           <div className="max-w-md mx-auto w-full">
             <h3 className="text-2xl font-black text-zinc-900 uppercase mb-2">
               {isLogin ? "Sign In" : "Create Account"}
@@ -104,7 +104,7 @@ export default function AuthPage() {
               </div>
 
               <button className="w-full bg-[#111416] text-[#e2c7a8] py-4 rounded-xl font-black uppercase text-xs tracking-[0.1em] hover:bg-black transition-all flex items-center justify-center gap-2 group shadow-xl shadow-zinc-200 mt-6">
-                {isLogin ? "Secure Login" : "Create Account"}
+                {isLogin ? "Login" : "Create Account"}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </form>
