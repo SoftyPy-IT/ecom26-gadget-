@@ -8,7 +8,7 @@ import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
 
 // Import images
-import img1 from "../../../public/img/hero/EXCHANGE-NOW-v2.webp";
+import img1 from "../../../public/img/hero/exchange.webp";
 import img2 from "../../../public/img/hero/sc-offer-main-banner.webp";
 import img3 from "../../../public/img/hero/s25-series-.webp";
 import img4 from "../../../public/img/hero/turbo-4-pro-v2.webp";

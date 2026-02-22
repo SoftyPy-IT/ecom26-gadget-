@@ -65,15 +65,15 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const utilityItems = [
-    { name: "Order Tracking", href: "/track" },
+    { name: "Order Tracking", href: "/order-tracking" },
     {
       name: "Gift",
       href: "/gift",
       icon: <Gift size={14} className="text-[#c5a47e]" />,
     },
     { name: "Blogs", href: "/blogs" },
-    { name: "EMI Policy", href: "/emi" },
-    { name: "Store Location", href: "/location" },
+    { name: "EMI Policy", href: "/emi-policy" },
+    { name: "Store Location", href: "/locations" },
   ];
 
   const categories = [
@@ -183,7 +183,7 @@ const Navbar = () => {
 
               {/* Desktop Only Buttons */}
               <div className="hidden lg:flex items-center gap-2">
-                <Link href="/offer">
+                <Link href="/offers">
                   <Button className="flex items-center gap-2 bg-[#1c1f22] border border-gray-700 text-white px-4 py-2 rounded-full text-xs uppercase hover:bg-gray-800 transition-all">
                     Offer <Gift size={14} className="text-[#e2c7a8]" />
                   </Button>

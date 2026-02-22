@@ -61,12 +61,14 @@ const BlogSection = () => {
             <div className="h-1 w-12 bg-[#c5a47e] rounded-full" />
           </div>
 
+<Link href="/blogs">
           <Button
             variant="outline"
             className="rounded-lg border-zinc-200 text-xs font-bold uppercase tracking-widest text-zinc-500 hover:bg-[#111416] hover:text-white transition-all"
           >
             See All <ArrowRight size={14} className="ml-2" />
           </Button>
+          </Link>
         </div>
 
         {/* Blog Slider */}
@@ -126,7 +128,7 @@ const BlogSection = () => {
                     </div>
 
                     <Link
-                      href={`/blog/${post.id}`}
+                      href={`/blogs/${post.id}`}
                       className="flex items-center gap-1 text-[10px] font-black uppercase text-[#111416] group-hover:gap-2 transition-all"
                     >
                       Read <ArrowRight size={14} className="text-[#c5a47e]" />

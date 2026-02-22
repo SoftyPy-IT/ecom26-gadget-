@@ -6,6 +6,16 @@ import Image from "next/image";
 
 const linkGroups = [
   {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/about" },
+      { label: "Our Brands", href: "/brands" },
+      { label: "Blogs", href: "/blogs" },
+      { label: "Order Tracking", href: "/order-tracking" },
+
+    ],
+  },
+  {
     title: "Categories",
     links: [
       { label: "Phones", href: "/phones" },
@@ -41,7 +51,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-12 mb-16">
           
           {/* Brand Section */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-4 space-y-8">
             <h2 className="text-4xl font-black uppercase italic tracking-tighter text-[#e2c7a8]">
               Gadget
             </h2>
@@ -70,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-4 grid grid-cols-2 gap-8">
+          <div className="lg:col-span-5 grid grid-cols-2 lg:grid-cols-3 gap-8">
             {linkGroups.map((group, index) => (
               <div key={index} className="space-y-6">
                 <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#e2c7a8]">
