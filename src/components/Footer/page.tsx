@@ -12,27 +12,29 @@ const linkGroups = [
       { label: "Our Brands", href: "/brands" },
       { label: "Blogs", href: "/blogs" },
       { label: "Order Tracking", href: "/order-tracking" },
+      { label: "Support Center", href: "/contact" },
 
     ],
   },
   {
     title: "Categories",
     links: [
-      { label: "Phones", href: "/phones" },
-      { label: "Tablets", href: "/tablets" },
-      { label: "Laptops", href: "/laptops" },
-      { label: "Smart Watch", href: "/watches" },
-      { label: "Gadgets", href: "/gadgets" },
+      { label: "Phones", href: "/products" },
+      { label: "Tablets", href: "/products" },
+      { label: "Laptops", href: "/products" },
+      { label: "Smart Watch", href: "/products" },
+      { label: "Gadgets", href: "/products" },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "Dazzle Care", href: "#" },
-      { label: "Warranty Policy", href: "#" },
-      { label: "Replacement", href: "#" },
-      { label: "Delivery Info", href: "#" },
-      { label: "EMI Plans", href: "#" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Warranty Policy", href: "/warranty-policy" },
+      { label: "Refund Policy", href: "/refund-policy" },
+      // { label: "Delivery Info", href: "#" },
+      { label: "EMI Policy", href: "/emi-policy" },
+
     ],
   },
 ];

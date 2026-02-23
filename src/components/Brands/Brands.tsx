@@ -26,22 +26,24 @@ export default function ShopByBrands() {
         <div className="flex justify-between items-end mb-10">
           <div className="space-y-1">
             <h2 className="text-4xl md:text-5xl font-black text-[#111416] tracking-tighter leading-none">
-             Shop By <span className="text-zinc-300">Brands</span>
-          </h2>
-           
+              Shop By <span className="text-zinc-300">Brands</span>
+            </h2>
+
             <div className="h-1 w-12 bg-[#c5a47e] rounded-full" />
           </div>
 
-          <Button
-            variant="outline"
-            className="rounded-lg border-zinc-200 text-xs font-bold uppercase tracking-widest text-zinc-500 hover:bg-[#111416] hover:text-white transition-all"
-          >
-            See All <ArrowRight size={14} className="ml-2" />
-          </Button>
+          <Link href={"/brands"}>
+            <Button
+              variant="outline"
+              className="rounded-lg border-zinc-200 text-xs font-bold uppercase tracking-widest text-zinc-500 hover:bg-[#111416] hover:text-white transition-all"
+            >
+              See All <ArrowRight size={14} className="ml-2" />
+            </Button>
+          </Link>
         </div>
 
         {/* Brand Grid */}
-         <ReusableSlider gap={16}>
+        <ReusableSlider gap={16}>
           {BRANDS.map((brand, index) => (
             <div
               key={index}

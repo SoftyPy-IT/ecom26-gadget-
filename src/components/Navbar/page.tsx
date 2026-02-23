@@ -66,11 +66,11 @@ const Navbar = () => {
 
   const utilityItems = [
     { name: "Order Tracking", href: "/order-tracking" },
-    {
-      name: "Gift",
-      href: "/gift",
-      icon: <Gift size={14} className="text-[#c5a47e]" />,
-    },
+    // {
+    //   name: "Gift",
+    //   href: "/gift",
+    //   icon: <Gift size={14} className="text-[#c5a47e]" />,
+    // },
     { name: "Blogs", href: "/blogs" },
     { name: "EMI Policy", href: "/emi-policy" },
     { name: "Store Location", href: "/locations" },
@@ -313,7 +313,8 @@ const Navbar = () => {
                         {cat.brands.map((brand) => (
                           <Link
                             key={brand}
-                            href={`${cat.href}/${brand.toLowerCase()}`}
+                            // href={`${cat.href}/${brand.toLowerCase()}`}
+                            href={"/products"}
                             className="block px-6 py-2 text-xs font-bold text-zinc-600 hover:bg-zinc-50 hover:text-black border-l-4 border-transparent hover:border-[#e2c7a8]"
                           >
                             {brand}
