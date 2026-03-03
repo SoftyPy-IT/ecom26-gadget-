@@ -41,7 +41,7 @@ const PrivacyPolicy = () => {
             </h1>
             <p className="text-zinc-400 text-sm font-medium max-w-xl">
               Last Updated: February 2026. Your trust is our most valuable asset. 
-              Here is how Dazzle protects your personal and device data.
+              Here is how gadget protects your personal and device data.
             </p>
           </div>
         </Container>
@@ -79,7 +79,7 @@ const PrivacyPolicy = () => {
                 <FileText className="text-[#c5a47e]" /> Introduction
               </h2>
               <p className="text-zinc-600 text-sm mb-4">
-                Dazzle ("we", "us", or "our") operates the Dazzle e-commerce platform. This policy informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
+                gadget ("we", "us", or "our") operates the gadget e-commerce platform. This policy informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
               </p>
               <p className="text-zinc-600 text-sm">
                 We use your data to provide and improve our service. By using the Service, you agree to the collection and use of information in accordance with this policy.
@@ -93,7 +93,7 @@ const PrivacyPolicy = () => {
               items={[
                 { label: "Personal Data", val: "Email, name, phone number, and shipping address during checkout." },
                 { label: "Usage Data", val: "IP address, browser type, pages visited, and time spent on our gadget store." },
-                { label: "Device Data", val: "Information about the device you use to access Dazzle." }
+                { label: "Device Data", val: "Information about the device you use to access gadget." }
               ]}
             />
 

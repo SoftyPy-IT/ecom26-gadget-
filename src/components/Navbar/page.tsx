@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -49,7 +50,6 @@ const BrandItem = ({ logo, name }: { logo: string; name: string }) => (
     className="flex flex-col items-center gap-2 group/brand"
   >
     <div className="h-12 flex items-center justify-center grayscale group-hover/brand:grayscale-0 transition-all">
-      {/* Replace with actual <img> tags for logos */}
       <span className="font-black text-zinc-800 text-lg tracking-tighter">
         {logo}
       </span>
@@ -59,66 +59,118 @@ const BrandItem = ({ logo, name }: { logo: string; name: string }) => (
     </span>
   </Link>
 );
+
 const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const utilityItems = [
-    { name: "Order Tracking", href: "/order-tracking" },
-    // {
-    //   name: "Gift",
-    //   href: "/gift",
-    //   icon: <Gift size={14} className="text-[#c5a47e]" />,
-    // },
-    { name: "Blogs", href: "/blogs" },
-    { name: "EMI Policy", href: "/emi-policy" },
-    { name: "Store Location", href: "/locations" },
-  ];
+  const [categoriesByMain, setCategoriesByMain] = useState<
+    Record<string, Array<{ name: string; slug: string; id: string }>>
+  >({});
+  const [loadingCategories, setLoadingCategories] = useState(true);
 
+  // Define categories with names and slugs (same as before)
   const categories = [
     {
       name: "Phones",
+      slug: "phones",
       icon: <Smartphone size={18} stroke="url(#gold-to-black)" />,
-      href: "/phones",
-      brands: ["Apple", "Samsung", "Google", "Xiaomi", "OnePlus"],
+      href: "/category/phones",
     },
     {
-      name: "Tablet",
+      name: "Tablets",
+      slug: "tablets",
       icon: <Tablet size={18} stroke="url(#gold-to-black)" />,
-      href: "/tablets",
-      brands: ["iPad", "Samsung Tab", "Xiaomi Pad"],
+      href: "/category/tablets",
     },
     {
       name: "Laptop",
+      slug: "laptop",
       icon: <Laptop size={18} stroke="url(#gold-to-black)" />,
-      href: "/laptops",
+      href: "/category/laptop",
     },
     {
       name: "Smart Watch",
+      slug: "smart-watch",
       icon: <Watch size={18} stroke="url(#gold-to-black)" />,
-      href: "/watches",
+      href: "/category/smart-watch",
     },
     {
       name: "Gadget",
+      slug: "gadget",
       icon: <Headphones size={18} stroke="url(#gold-to-black)" />,
-      href: "/gadgets",
+      href: "/category/gadget",
     },
     {
       name: "Accessories",
+      slug: "accessories",
       icon: <FileText size={18} stroke="url(#gold-to-black)" />,
-      href: "/accessories",
+      href: "/category/accessories",
     },
     {
       name: "Sounds",
+      slug: "sounds",
       icon: <Speaker size={18} stroke="url(#gold-to-black)" />,
-      href: "/sounds",
+      href: "/category/sounds",
     },
     {
       name: "Smart TV",
+      slug: "tv",
       icon: <Tv size={18} stroke="url(#gold-to-black)" />,
-      href: "/tv",
+      href: "/category/tv",
     },
+  ];
+
+  // Map main category names to slugs
+  const nameToSlugMap = categories.reduce(
+    (acc, cat) => {
+      acc[cat.name] = cat.slug;
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/category/all`,
+        );
+        const json = await res.json();
+        const groupedByName = json.data || {}; // keys are main category names
+
+        const groupedBySlug: Record<
+          string,
+          Array<{ name: string; slug: string; id: string }>
+        > = {};
+        Object.entries(groupedByName).forEach(([mainName, cats]) => {
+          const mainSlug = nameToSlugMap[mainName];
+          if (mainSlug) {
+            groupedBySlug[mainSlug] = (cats as any[]).map((cat: any) => ({
+              name: cat.name,
+              slug: cat.slug,
+              id: cat._id, // include the unique _id
+            }));
+          }
+        });
+
+        setCategoriesByMain(groupedBySlug);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setLoadingCategories(false);
+      }
+    };
+
+    fetchCategories();
+  }, [nameToSlugMap]);
+
+  const utilityItems = [
+    { name: "Order Tracking", href: "/order-tracking" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "EMI Policy", href: "/emi-policy" },
+    { name: "Store Location", href: "/locations" },
   ];
 
   return (
@@ -140,7 +192,6 @@ const Navbar = () => {
                   href={item.href}
                   className="hover:text-black flex items-center gap-1"
                 >
-                  {item.icon && item.icon}
                   {item.name}
                 </Link>
               ))}
@@ -294,34 +345,39 @@ const Navbar = () => {
               <div className="flex gap-6">
                 {categories.map((cat) => (
                   <div key={cat.name} className="group relative">
+                    {/* Category link */}
                     <Link
                       href={cat.href}
                       className="flex items-center gap-2 text-gray-500 hover:text-black text-[12px] font-bold uppercase tracking-tight transition-colors py-5 border-b-2 border-transparent hover:border-black"
                     >
                       <span>{cat.icon}</span>
                       {cat.name}
-                      {cat.brands && (
-                        <ChevronDown
-                          size={12}
-                          className="ml-[-4px] group-hover:rotate-180 transition-transform"
-                        />
-                      )}
+                      {/* Show chevron only if there are subcategories for this main category */}
+                      {!loadingCategories &&
+                        categoriesByMain[cat.slug]?.length > 0 && (
+                          <ChevronDown
+                            size={12}
+                            className="ml-[-4px] group-hover:rotate-180 transition-transform"
+                          />
+                        )}
                     </Link>
 
-                    {cat.brands && (
-                      <div className="absolute top-full left-0 w-48 bg-white shadow-xl border border-zinc-100 py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 rounded-b-xl">
-                        {cat.brands.map((brand) => (
-                          <Link
-                            key={brand}
-                            // href={`${cat.href}/${brand.toLowerCase()}`}
-                            href={"/products"}
-                            className="block px-6 py-2 text-xs font-bold text-zinc-600 hover:bg-zinc-50 hover:text-black border-l-4 border-transparent hover:border-[#e2c7a8]"
-                          >
-                            {brand}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    {/* Subcategories dropdown */}
+                    {/* Desktop dropdown */}
+                    {!loadingCategories &&
+                      categoriesByMain[cat.slug]?.length > 0 && (
+                        <div className="absolute top-full left-0 w-48 bg-white shadow-xl border border-zinc-100 py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 rounded-b-xl">
+                          {categoriesByMain[cat.slug].map((sub) => (
+                            <Link
+                              key={sub.id} // use id instead of slug
+                              href={`/category/${cat.slug}/${sub.slug}`}
+                              className="block px-6 py-2 text-xs font-bold text-zinc-600 hover:bg-zinc-50 hover:text-black border-l-4 border-transparent hover:border-[#e2c7a8]"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                   </div>
                 ))}
               </div>
@@ -360,7 +416,8 @@ const Navbar = () => {
                   value={cat.name}
                   className="border-b-zinc-100"
                 >
-                  {cat.brands ? (
+                  {!loadingCategories &&
+                  categoriesByMain[cat.slug]?.length > 0 ? (
                     <>
                       <AccordionTrigger className="hover:no-underline py-4">
                         <div className="flex items-center gap-4 text-sm font-black uppercase tracking-tight text-zinc-800">
@@ -370,16 +427,17 @@ const Navbar = () => {
                           {cat.name}
                         </div>
                       </AccordionTrigger>
+                      {/* Mobile accordion */}
                       <AccordionContent>
                         <div className="flex flex-col gap-1 pl-14">
-                          {cat.brands.map((brand) => (
+                          {categoriesByMain[cat.slug].map((sub) => (
                             <Link
-                              key={brand}
-                              href={`${cat.href}/${brand.toLowerCase()}`}
+                              key={sub.id} // use id
+                              href={`/category/${cat.slug}/${sub.slug}`}
                               onClick={() => setIsClick(false)}
                               className="py-3 text-[13px] font-bold text-zinc-500 border-b border-zinc-50 last:border-0"
                             >
-                              {brand}
+                              {sub.name}
                             </Link>
                           ))}
                         </div>

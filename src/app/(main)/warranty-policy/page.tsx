@@ -22,13 +22,13 @@ const WarrantyPolicy = () => {
           <div className="max-w-3xl space-y-4">
             <div className="flex items-center gap-2 text-[#c5a47e]">
               <ShieldCheck size={20} />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em]">Dazzle Protection</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em]">gadget Protection</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter">
               Warranty <span className="text-[#c5a47e]">&</span> Service <br /> Policy
             </h1>
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-xl">
-              Dazzle is committed to providing top-notch service and reliable product support. 
+              gadget is committed to providing top-notch service and reliable product support. 
               Our warranty plans ensure your tech remains protected and high-performing.
             </p>
           </div>
@@ -46,7 +46,7 @@ const WarrantyPolicy = () => {
           <HighlightCard 
             icon={<Smartphone className="text-[#c5a47e]" />} 
             title="Network Unlock" 
-            desc="Network-lock issues on any phone are fully covered by Dazzle."
+            desc="Network-lock issues on any phone are fully covered by gadget."
           />
           <HighlightCard 
             icon={<CheckCircle2 className="text-[#c5a47e]" />} 
@@ -75,9 +75,9 @@ const WarrantyPolicy = () => {
               </div>
             </PolicySection>
 
-            {/* 2. Dazzle Care+ Apple */}
+            {/* 2. gadget Care+ Apple */}
             <PolicySection 
-              title="2. Dazzle Care+" 
+              title="2. gadget Care+" 
               tag="Exclusive for Apple"
               price="4.99% of price"
               isPremium
@@ -94,9 +94,9 @@ const WarrantyPolicy = () => {
               </ul>
             </PolicySection>
 
-            {/* 3. Dazzle Care+ Android/Laptop */}
+            {/* 3. gadget Care+ Android/Laptop */}
             <PolicySection 
-              title="3. Dazzle Care+" 
+              title="3. gadget Care+" 
               tag="Android & Laptop"
               price="6.99% - 9.99% of price"
             >
@@ -107,9 +107,9 @@ const WarrantyPolicy = () => {
               <p className="text-zinc-600">Includes brand-new replacement for hardware and screen issues. Processing is faster (3-5 days) than standard warranty cycles.</p>
             </PolicySection>
 
-            {/* 4. Dazzle Ultimate Care+ */}
+            {/* 4. gadget Ultimate Care+ */}
             <PolicySection 
-              title="5. Dazzle Ultimate Care+" 
+              title="5. gadget Ultimate Care+" 
               tag="Full Protection"
               price="Fixed Premium"
               isPremium
@@ -128,7 +128,7 @@ const WarrantyPolicy = () => {
 
             {/* 5. Screen Care+ */}
             <PolicySection 
-              title="7. Dazzle Screen Care+" 
+              title="7. gadget Screen Care+" 
               tag="Display Only"
               price="Fixed Fee"
             >
@@ -147,7 +147,7 @@ const WarrantyPolicy = () => {
             <div className="bg-[#111416] text-white p-8 rounded-[2.5rem] sticky top-24">
               <h3 className="text-2xl font-black italic uppercase mb-6">How to Claim</h3>
               <div className="space-y-6">
-                <Step number="01" text="Visit any Dazzle Service Center with your device." />
+                <Step number="01" text="Visit any gadget Service Center with your device." />
                 <Step number="02" text="Present the Original Box and a valid photo ID." />
                 <Step number="03" text="Our team will diagnose and confirm eligibility." />
                 <Step number="04" text="Collect your repaired/replaced device within the promised time." />
@@ -189,7 +189,7 @@ const WarrantyPolicy = () => {
             <div className="space-y-4">
               <p>• <strong>Verification:</strong> Customers must check cosmetic condition before leaving. Claims for dents/scratches are not accepted later.</p>
               <p>• <strong>Warranty Activation:</strong> Plans must be activated at the exact time of purchase.</p>
-              <p>• <strong>Data:</strong> Dazzle is not responsible for any data loss. Please back up your device.</p>
+              <p>• <strong>Data:</strong> gadget is not responsible for any data loss. Please back up your device.</p>
             </div>
           </div>
         </div>

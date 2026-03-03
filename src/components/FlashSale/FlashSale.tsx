@@ -1,90 +1,69 @@
+
+
 "use client";
 
 import { Zap, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import ProductCard from "../shared/ProductCard";
-import Slider from "../Slider/page";
 import { ReusableSlider } from "../shared/ReusableSlider";
 
-// 1. Updated JSON Data Array
-const FLASH_SALE_PRODUCTS = [
-  {
-    id: 1,
-    name: "iPhone 17 Pro Max",
-    price: 166990,
-    oldPrice: 214990,
-    discount: "22%",
-    isHot: true,
-    img: "/img/iPhone-17-Pro-Max.webp",
-    img2: "/img/iPhone-17-Pro-Max1.webp",
-  },
-  {
-    id: 2,
-    name: "Mibro Earbuds 5",
-    price: 1192,
-    oldPrice: 1900,
-    discount: "37%",
-    isHot: false,
-    img: "/img/Mibro-Earbuds-5-price-in-Bangladesh-black.webp",
-    img2: "/img/Mibro-Earbuds-5-price-in-Bangladesh-pink.webp",
-  },
-  {
-    id: 3,
-    name: "Anker Zolo 20W PD",
-    price: 1250,
-    oldPrice: 1499,
-    discount: "16%",
-    isHot: true,
-    img: "/img/Anker-Zolo-20W-PD-30-3-Pin-UK-Fast-Charger-Price-in-bangladesh-1.webp",
-    img2: "/img/Anker-Zolo-Charger-20W-GaN-IQ-&-PD-price-in-bangladesh-(2).webp",
-  },
-  {
-    id: 4,
-    name: "iPhone 17",
-    price: 72500,
-    oldPrice: 85000,
-    discount: "15%",
-    isHot: true,
-    img: "/img/iPhone-17-Price-in-Bangladesh-Lavender.webp",
-    img2: "/img/iPhone-17-Price-in-Bangladesh-Black.webp",
-  },
-  {
-    id: 5,
-    name: "iPhone 17 Pro",
-    price: 72500,
-    oldPrice: 85000,
-    discount: "15%",
-    isHot: true,
-    img: "/img/iPhone-17-Pro-Price-in-Bangladesh.webp",
-    img2: "/img/iPhone-17-Pro-Price-in-Bangladesh1.webp",
-  },
-  {
-    id: 6,
-    name: "Belkin Boostcharge Compact USB-C",
-    price: 1990,
-    oldPrice: 2690,
-    discount: "15%",
-    isHot: true,
-    img: "/img/Belkin-BoostCharge-Compact-USB-C-Wall-Charger-20W-price-in-Bangladesh.webp",
-    img2: "",
-  },
-   {
-    id: 7,
-    name: "Anker Zolo 20W PD",
-    price: 1250,
-    oldPrice: 1499,
-    discount: "16%",
-    isHot: true,
-    img: "/img/Anker-Zolo-20W-PD-30-3-Pin-UK-Fast-Charger-Price-in-bangladesh-1.webp",
-    img2: "/img/Anker-Zolo-Charger-20W-GaN-IQ-&-PD-price-in-bangladesh-(2).webp",
-  },
-];
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  productCost: number; // used as old price
+  discount_price: number;
+  is_featured: boolean;
+  thumbnail: string;
+  images: string[];
+  // other fields if needed
+}
 
 const FlashSale = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/product/all`,
+        );
+        if (!res.ok) throw new Error("Failed to fetch products");
+        const json = await res.json();
+        // Assuming API returns { success: true, data: [...] }
+        setProducts(json.data || []);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter products that have a discount (you can adjust criteria)
+  const flashProducts = products.filter((p) => p.discount_price > 0);
+
+ 
+
+  if (error) {
+    return (
+      <section className="py-16 bg-[#fafafa]">
+        <div className="max-w-7xl mx-auto px-4 text-center text-red-500">
+          Error: {error}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-16 bg-[#fafafa]">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Modern Header (unchanged) */}
+        {/* Header (unchanged) */}
         <div className="bg-gradient-to-br from-[#111416] via-[#1c1f22] to-[#111416] rounded-[2.5rem] p-8 md:p-10 mb-10 relative overflow-hidden shadow-2xl">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#e2c7a8] opacity-10 blur-[100px]" />
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
@@ -141,25 +120,39 @@ const FlashSale = () => {
           </div>
         </div>
 
-        {/* Reusable Slider replaces the grid */}
+        {/* Slider with real products */}
         <ReusableSlider gap={12}>
-          {FLASH_SALE_PRODUCTS.map((product) => (
-            <div
-              key={product.id}
-              data-slider-card
-              className="min-w-[calc(50%-6px)] sm:min-w-[calc(50%-6px)] md:min-w-[calc(33.333%-8px)] lg:min-w-[calc(16.666%-10px)]"
-            >
-              <ProductCard
-                name={product.name}
-                price={product.price}
-                oldPrice={product.oldPrice}
-                discount={product.discount}
-                isHot={product.isHot}
-                image={product.img}
-                hoverImage={product.img2}
-              />
-            </div>
-          ))}
+          {flashProducts.map((product) => {
+            // Calculate discount percentage
+            const discountPercent =
+              product.productCost && product.productCost > product.price
+                ? Math.round(
+                    ((product.productCost - product.price) /
+                      product.productCost) *
+                      100,
+                  )
+                : 0;
+            const discountText =
+              discountPercent > 0 ? `${discountPercent}%` : "";
+
+            return (
+              <div
+                key={product._id}
+                data-slider-card
+                className="w-[calc(50%-6px)] sm:w-[calc(50%-6px)] md:w-[calc(33.333%-8px)] lg:w-[calc(16.666%-10px)] flex-shrink-0"
+              >
+                <ProductCard
+                  name={product.name}
+                  price={product.price}
+                  oldPrice={product.productCost}
+                  discount={discountText}
+                  isHot={product.is_featured}
+                  image={product.thumbnail}
+                  hoverImage={product.images?.[1] || product.thumbnail}
+                />
+              </div>
+            );
+          })}
         </ReusableSlider>
       </div>
     </section>
