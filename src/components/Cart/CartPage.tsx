@@ -32,7 +32,7 @@ export default function CartPage() {
                         <h3 className="font-bold text-sm text-zinc-900">iPhone 15 Pro Max</h3>
                         <p className="text-[10px] text-zinc-400 font-bold uppercase">Natural Titanium | 256GB</p>
                         <div className="mt-1 flex items-center gap-1 text-[10px] text-blue-600 font-black uppercase">
-                          <ShieldCheck size={12} /> Dazzle Care+ Added
+                          <ShieldCheck size={12} /> gadget Care+ Added
                         </div>
                       </div>
                     </td>

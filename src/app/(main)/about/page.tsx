@@ -16,7 +16,7 @@ import Container from "@/src/components/shared/Container";
 const AboutPage = () => {
   return (
     <main className="bg-white overflow-hidden">
-      {/* SECTION 1: WELCOME TO DAZZLE */}
+      {/* SECTION 1: WELCOME TO gadget */}
       <section className="py-20 md:py-32">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 items-center">
@@ -29,7 +29,7 @@ const AboutPage = () => {
               <div className="relative h-[400px] md:h-[650px] w-full rounded-[2rem] overflow-hidden shadow-2xl">
                 <Image 
                   src="/img/about.webp"
-                  alt="Dazzle Store"
+                  alt="gadget Store"
                   fill
                   className="object-cover"
                 />
@@ -50,13 +50,13 @@ const AboutPage = () => {
                 Established Excellence
               </h4>
               <h1 className="text-5xl md:text-7xl font-black text-[#111416] tracking-tighter leading-[0.9] uppercase">
-                Welcome to <span className="text-zinc-300">Dazzle</span> <br /> 
+                Welcome to <span className="text-zinc-300">gadget</span> <br /> 
                 Our Perfect Store
               </h1>
               <div className="h-1.5 w-20 bg-[#c5a47e] rounded-full" />
               
               <p className="text-zinc-500 text-lg leading-relaxed font-medium pt-4">
-                At Dazzle, we don&apos;t just sell gadgets; we curate experiences. Our journey began with a simple mission: to bring the world&apos;s most innovative technology to your doorstep with uncompromised authenticity.
+                At gadget, we don&apos;t just sell gadgets; we curate experiences. Our journey began with a simple mission: to bring the world&apos;s most innovative technology to your doorstep with uncompromised authenticity.
               </p>
               <p className="text-zinc-500 text-md leading-relaxed">
                 Our physical stores are designed to be &apos;Experience Centers&apos; where you can touch, feel, and test the latest tech before making it yours. From the newest flagship smartphones to niche audiophile gear, we are the perfect destination for every tech enthusiast.
@@ -77,7 +77,7 @@ const AboutPage = () => {
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
             <h4 className="text-[#c5a47e] font-black uppercase tracking-[0.3em] text-sm">
-              The Dazzle Difference
+              The gadget Difference
             </h4>
             <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
               Why Choose Us <br /> 

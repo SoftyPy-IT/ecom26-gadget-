@@ -5,6 +5,7 @@ import { ThemeProvider } from "../components/theme-provider";
 import QueryProvider from "../components/QueryProvider";
 import Providers from "../components/Providers";
 import { Toaster } from "react-hot-toast";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,19 +33,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <>
-          <ThemeProvider
-            enableSystem
-            disableTransitionOnChange
-          >
+          <ThemeProvider enableSystem disableTransitionOnChange>
             <QueryProvider>
               <Providers>
                 <Toaster position="top-center" reverseOrder={false} />
-                {children}
+                <TooltipProvider>{children}</TooltipProvider>
               </Providers>
             </QueryProvider>
           </ThemeProvider>
         </>
       </body>
-    </html >
+    </html>
   );
 }

@@ -28,7 +28,7 @@ const RefundPolicy = () => {
               Refund <span className="text-[#c5a47e]">Policy</span>
             </h1>
             <p className="text-zinc-400 text-sm font-medium max-w-xl leading-relaxed">
-              At Dazzle, we stand by the quality of our gadgets. If your purchase isn&apos;t quite right, 
+              At gadget, we stand by the quality of our gadgets. If your purchase isn&apos;t quite right, 
               our streamlined refund process ensures your investment is protected.
             </p>
           </div>
@@ -61,7 +61,7 @@ const RefundPolicy = () => {
                 />
                 <EligibilityItem 
                   title="Proof of Purchase" 
-                  desc="An original invoice or digital receipt from Dazzle is mandatory for all claims." 
+                  desc="An original invoice or digital receipt from gadget is mandatory for all claims." 
                 />
               </div>
             </div>
@@ -73,7 +73,7 @@ const RefundPolicy = () => {
                 <ProcessStep 
                   number="01" 
                   title="Initiate Claim" 
-                  desc="Contact our support team or visit a Dazzle outlet with your device and box." 
+                  desc="Contact our support team or visit a gadget outlet with your device and box." 
                 />
                 <ProcessStep 
                   number="02" 

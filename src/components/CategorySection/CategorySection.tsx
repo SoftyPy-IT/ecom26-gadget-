@@ -4,46 +4,48 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Container from "../shared/Container";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const categories = [
-  { name: "Phones", img: "/img/category/phones.webp", href: "/phones" },
-  { name: "Tablet", img: "/img/category/tablet.webp", href: "/tablets" },
-  { name: "Laptop", img: "/img/category/laptop.webp", href: "/laptops" },
-  { name: "Smart Watch", img: "/img/category/watch.webp", href: "/watches" },
-  { name: "AirPods", img: "/img/category/airpods.png", href: "/airpods" },
-  { name: "Sounds", img: "/img/category/sounds.webp", href: "/sounds" },
+
+
+  { name: "Phones", img: "/img/category/phones.webp", href: "/category/phones" },
+  { name: "Tablet", img: "/img/category/tablet.webp", href: "/category/tablets" },
+  { name: "Laptop", img: "/img/category/laptop.webp", href: "/category/laptop" },
+  { name: "Smart Watch", img: "/img/category/watch.webp", href: "/category/smart-watch" },
+  { name: "AirPods", img: "/img/category/airpods.png", href: "/category/gadget/airpods" },
+  { name: "Sounds", img: "/img/category/sounds.webp", href: "/category/sounds" },
   {
     name: "Accessories",
     img: "/img/category/accessories.webp",
-    href: "/accessories",
+    href: "/category/accessories",
   },
-  { name: "Gadgets", img: "/img/category/gadget.webp", href: "/gadgets" },
-  { name: "Earbuds", img: "/img/category/earbuds.webp", href: "/earbuds" },
-  { name: "Phone Cases", img: "/img/category/cases.webp", href: "/cases" },
+  { name: "Gadgets", img: "/img/category/gadget.webp", href: "/category/gadget" },
+  { name: "Earbuds", img: "/img/category/earbuds.webp", href: "/category/earbuds" },
+  { name: "Phone Cases", img: "/img/category/cases.webp", href: "/category/cases" },
   {
     name: "Screen Protectors",
     img: "/img/category/screen.webp",
-    href: "/screen-protectors",
+    href: "/category/screen-protectors",
   },
   {
     name: "Over-Ear Headphones",
     img: "/img/category/headphones.webp",
-    href: "/headphones",
+    href: "/category/headphones",
   },
   {
     name: "MacBook Case",
     img: "/img/category/macbook.webp",
-    href: "/mac-cases",
+    href: "/category/mac-cases",
   },
   {
     name: "Power Banks",
     img: "/img/category/powerbanks.webp",
-    href: "/power-banks",
+    href: "/category/power-banks",
   },
-  { name: "Adapters", img: "/img/category/adapters.webp", href: "/adapters" },
-  { name: "Smart TV", img: "/img/category/tv.webp", href: "/tv" },
+  { name: "Adapters", img: "/img/category/adapters.webp", href: "/category/adapters" },
+  { name: "Smart TV", img: "/img/category/tv.webp", href: "/category/tv" },
 ];
 
 const CategorySection = () => {
