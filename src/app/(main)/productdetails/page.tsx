@@ -270,26 +270,26 @@ const IPhone17ProMaxDetails = () => {
               </span>
             </div>
 
-            {/* Dazzle Care */}
+            {/* gadget Care */}
             <div className="border border-zinc-200 rounded-xl overflow-hidden bg-white shadow-sm">
               <div className="bg-[#111416] p-4 flex items-center gap-2">
                 <ShieldCheck className="text-[#c5a47e]" size={20} />
                 <span className="text-white font-bold text-[11px] uppercase tracking-widest">
-                  Dazzle Care
+                  gadget Care
                 </span>
               </div>
               <div className="divide-y divide-zinc-100">
-                <CareItem title="Dazzle Ultimate Care+ 1 year" price="25,031" />
+                <CareItem title="gadget Ultimate Care+ 1 year" price="25,031" />
                 <CareItem
                   title="DC+ & DSC+ Bundle (1 year brand-new replacement)"
                   price="15,012"
                 />
                 <CareItem
-                  title="Dazzle Screen Care+ : 730 days display"
+                  title="gadget Screen Care+ : 730 days display"
                   price="10,002"
                 />
                 <CareItem
-                  title="Dazzle Care+ for Apple (1 Year Guarantee)"
+                  title="gadget Care+ for Apple (1 Year Guarantee)"
                   price="8,332"
                 />
               </div>
@@ -305,7 +305,7 @@ const IPhone17ProMaxDetails = () => {
                   className="w-4 h-4 accent-green-600 rounded"
                 />
                 <span className="text-[11px] text-zinc-500">
-                  I agree to Dazzles{" "}
+                  I agree to gadgets{" "}
                   <span className="text-blue-500 underline">
                     terms & conditions
                   </span>

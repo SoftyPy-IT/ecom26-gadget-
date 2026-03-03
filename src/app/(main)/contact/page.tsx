@@ -38,7 +38,7 @@ const ContactUs = () => {
               transition={{ delay: 0.1 }}
               className="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter"
             >
-              Contact <span className="text-[#c5a47e]">Dazzle</span>
+              Contact <span className="text-[#c5a47e]">gadget</span>
             </motion.h1>
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-xl mx-auto font-medium">
               Have questions about a gadget or need technical support? Our specialists are here to help you upgrade your tech lifestyle.
@@ -61,7 +61,7 @@ const ContactUs = () => {
             <ContactInfoCard 
               icon={<Mail className="text-[#c5a47e]" size={20} />}
               title="Official Support"
-              detail="support@dazzle.com"
+              detail="support@gadget.com"
               sub="Online 24/7 for tickets"
             />
             <ContactInfoCard 

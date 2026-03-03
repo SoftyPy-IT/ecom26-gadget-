@@ -66,8 +66,8 @@ export default function Footer() {
                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-[#e2c7a8] group-hover:text-black transition-all">
                   <Mail size={18} />
                 </div>
-                <Link href="mailto:support@dazzle.com.bd" className="text-sm font-bold text-zinc-300 hover:text-white">
-                  support@dazzle.com.bd
+                <Link href="mailto:support@gadget.com.bd" className="text-sm font-bold text-zinc-300 hover:text-white">
+                  support@gadget.com.bd
                 </Link>
               </div>
               <div className="flex items-center gap-4 group cursor-pointer">
@@ -133,7 +133,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-zinc-500 text-[11px] font-bold uppercase tracking-widest">
-            © 2026 Dazzle Gadget Store. All Rights Reserved.
+            © 2026 gadget Gadget Store. All Rights Reserved.
           </p>
           <div className="flex gap-6">
              <Image src="/img/payment.webp" alt="Payments" width={250} height={30} className="transition-all" />
